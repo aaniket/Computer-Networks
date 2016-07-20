@@ -1,0 +1,628 @@
+
+Webspace Sponsored by: 
+ 
+Version 0.0.0 @ 03:55/08.07.2000
+ISO OSI 7 Layer Model forced with TCP/IP
+
+The ISO (International Standards Organization) is a collection of people that are technicians, politicians, lawyers, and members of corporations representing the political / economical / strategic / technical needs of their represented unit. They get together and hammer out standards (not to be confused with protocols) for consistent, international work.
+
+One of their web pages (http://www.iso.ch/iso/en/aboutiso/introduction/index.html)) describes them as:
+
+"The International Organization for Standardization (ISO) is a worldwide federation of national standards bodies from some 130 countries, one from each country.
+
+ISO is a non-governmental organization established in 1947. The mission of ISO is to promote the development of standardization and related activities in the world with a view to facilitating the international exchange of goods and services, and to developing cooperation in the spheres of intellectual, scientific, technological and economic activity.
+
+ISO's work results in international agreements which are published as International Standards. "
+
+The theory and idea behind having standards accepted, ratified, and agreed upon by nations around the world, is to ensure that the system from Country A will be easily integrated with the system from Country B with little effort. It also helps to make specification for industries to create goods and services that conform to the standard and by providing competition to the same product, decrease prices for products that must match the minimum standards. Comparisons are made easier in this way for products made by competing groups that must meet or exceed the minimum accepted specified standards.
+
+A protocol is more like a language that can be shared by many people. A protocol may become a standard, if all of the players in the game that would like to use that protocol all politically agree that it shall be the protocol of choice for use in, and between nations. When the protocol is ratified by the governing bodies as the shared and agreed upon system, it becomes an official standard.
+
+A protocol may also become a de-facto standard or an informal standard if all players in a game use it without all members officially ratifying the protocol.
+
+Often, a standard attempts to divest itself of being labeled as a protocol and tries to use language to describe how a protocol may be created to conform to the standard, as in the case of the ISO OSI 7 Layer model.
+
+When two or more parties share a protocol, they have rules that conduct their communications to allow them to share and exchange ideas. For a rough example, we can examine English (the language) and see that two people speaking English with each other must share certain rules. They must have an agreed syntax, speed of speech, and accepted definitions for conveyed words to understand meanings of words stated within their context. Often languages also include systems to recover in the case of errors, and many languages like English also are capable of including rules for correcting for errors. A person may say, "what?" or "could you repeat that?" or even, "do you mean this when you say that?" for some examples.
+
+In this way, you can see that a protocol is merely an agreed upon "language" with agreed upon syntaxes, and definitions used by two or more parties to communicate data or information. When a system or protocol is shared by everyone (or enough of the people that have power, and wield it effective enough to squash or squelch any opposition) then it may also become a standard.
+
+The ISO looked to create a simple model for networking. They took the approach of defining layers that rest in a stack formation, one layer upon the other. Each layer would have a specific function, and deal with a specific task. Much time was spent in creating their model called "The ISO OSI Seven Layer Model for Networking". In this model, they have 7 layers, and each layer has a special and specific function.
+
+ISO OSI Seven Layer Model
+7.) Application-
+6.) Presentation
+5.) --Session---
+4.) -Transport--
+3.) --Network---
+2.) -Data Link--
+1.) --Physical--
+Described:
+
+7.) Application Layer: The Application Layer can include things like File Transfers, and display formatting. HTTP is an example of an Application Layer protocol. Commonly known protocols considered by many to be part of the application layer actually may be considered to occupy the Session, Presentation, and Application Layers. For example an examination of an NFS file mount with files being copied defies simple categorization within the ISO OSI 7 Layer Reference Model. Is NFS an Application Layer Protocol? Well, files are copied, so we see that the Application Layer may be included. However, synchronization in file transfers takes place to some extent and session are created and torn down on demand as files are transferred. This suggests that it could also be part of the session layer or maybe presentation layer.
+6.) Presentation Layer: Other than data sent/accepted to/from the application layer and Session Layer, this layer is reserved for certain kinds of data manipulation or consistent data types being encapsulated for transmission. Translations could possibly be made between ASCII and Unicode or even EBCIDIC if hexadecimal values for letter were being transmitted.
+It is the presentation layer that is also able to exchange messages and often dynamically create a syntax that is shared by it and its peer layer service on the remote stack.
+
+It is possible for something like a database translation system that could provide a consistent presentation service for an application program performing database queries to operate here. There are some parts of OBDC that may fit into the presentation layer in this respect.
+
+Also included within this layer is Security in the form of encryption (if used) and compression.
+
+It is this layer that requests the creation of sessions, and requests the termination of sessions.
+
+Some may ask why encryption and compress could be considered part of this layer. When you think of it, encryption is a form of "translation" that is used. Certainly, it may not be EBCIDIC to ASCII, but a translation of characters is made so that the destination may receive the intended content of the sender. Also, the same can be said on compression and decompression; they are forms of translation used at a common layer to allow the above layer (Application Layer) to get its data and have the presentation layer processing be transparent to the Application Layer.
+
+Other examples of translation that might be made to "fit" in this layer include vt100, vt220, HTML and codes for translation of data to be presented. FOr example, in html, "&amp;" can be used to represent "&" and this is effectively a modification of data being displayed. (The end user often does not see the escape codes used to display an inverse letter, or odd symbol.)
+
+5.) Session Layer: This section is one of the most often misunderstood sections since it does not have an obvious separate protocol when people try to apply it to a common layered system that may use TCP/IP or IPX/SPX. Often with these protocols and protocols on top of these protocols, layer boundaries are not so obvious. In examining what services are supposed to take place here according to the ISO in this OSI 7 Layer Reference model for Networking we can see a short list.
+Deal with creating a session, transmission of data, and then tear down of the created session. Sessions are created and terminated at the request of the Presentation Layer as it has data needing to be passed on to a different location.
+
+Part of the Session creation process includes dealing with cases of Half Duplex sessions where only a transmission or reception may take place and working out a turn sharing system to ensure both sides get opportunities to transmit as they need to relay data. In the case of Full Duplex support, a discovery process may be needed to allow this layer to know that bi-directional conversations make take place at the same time.
+
+Another service that is offered as a part of the Session Layer might include data synchronization. Checksums may also be included at the Session Layer as a part of data synchronization. A checksum is performed after each packet is transmitted to see if applying the data from the packet to the file or stream being moved or transmitted would cause it to have the same checksum as the file on the remote location up to that point. If it is, then the new data may be added to the local machine being transferred from the remote site. This is a form of error correction for transmitted data. A familiar form of checksums in use can be seen in Z-modem transfers as part of communications or terminal software. The wonderful part of z-modem transfers is that it becomes possible for an interrupted z-modem download to be resumed where it left off with a minimal amount of retransmitted data. This may not be a method used at this layer, but it shows how using a system of synchronization with each part of the data being transferred can allow for interruptions to limit the problems associated with having to start the whole transmission over again.
+
+A job of the Session Layer includes helping to ensure communications within a session be only permitted by one party at a time as necessary. When this is an issue, sometimes a specialized "token" or "speaking staff" may need to be passed and relayed between the different members. Only members with this special "speaking staff" or "token" may initiate these messages.
+
+An example of Flow Control with tokens or "speaking staffs":
+
+In some tribal groups, they have meetings where only the member of the tribe holding a ceremonial "speaking staff" other object, or a ruled "symbolic reference" is allowed to speak. It exists as a flow control mechanism in their gatherings. Hearing several people speak simultaneously, especially in an argument, may have the effects of making the collective words unintelligible. Unintelligible words lead to required retransmissions of conveyed data. Retransmitted data make meetings longer than necessary. Flow control provides a useful purpose of preventing uncontrolled chatter of unauthorized sources from disrupting transmission of data from an authorized source via possession of the "speaking staff" to speak. This flow control system works because all of the people agree that it is "illegal" to speak unless they have permission. (By Illegal, we refer to it being against the "laws" or "rules" or "protocol" or "standard".)
+
+Even the tribe of our U.S. House of Representatives has a "speaking staff" of sorts. When you hear things like, "The speaker of the house recognizes House member Joe Schmoe from the state of Stupidity and yields the floor for 3 minutes" you hear a verbal exchange telling everyone to shut up while this guys blabs on for 3 minutes. This shows how advanced we are in the western civilization; our tribal "elders" don't actually carry around "speaking staffs" in our tribe... ...I mean U.S. House of Representatives. In this tribe, they pass a "symbolic reference" to the "floor" and give the "floor" to a member. In this example, the speaker of the house is the flow control manager, and recognizes people that wish to be heard and grants them the floor as he/she sees fit.
+
+In some of the worst cases, a lack of flow control may lead to personal harm of feuding members or premature and untimely death as a result of uncontrolled emotional and inflammatory outbursts between feuding members of a tribe. Luckily, we do not often have communications layers with control over the life and death of people. (Certainly, the data conveyed over channels might have life or death consequences, but the layers themselves do not possess control over life and death.)
+
+4.) Transport Layer: This layer is responsible for many things that individually may not seem exceptionally important but actually provide for some critical needs.
+Just as you will read in some of the next layers below, this layer also looks to prevent a fast sender from over-running a slow receiver. An analogy is made in the Networking Layer section between data throughput rates and pipe sizes may better illustrate this and keep the amount of reading smaller if it is examined later.
+
+This layer, just as all layers, accept data from layer immediately above and below it (except for layer 1, and layer 7) as well as provide services for the layers above them (except for Layer 7.) In this case, the Transport Layer must create a connection of the type needed by the Session Layer for each connection requested by the Session Layer. In cases where data being pushed down this model towards this layer is larger than the maximum allowed size of packets for this layer, it is up to this layer to re-size the incoming data from above. It does this by breaking the larger sized data from the layer above into smaller sizes that may fit within packets for this layer. The peer level Session Layer then re-creates the larger sized data for its upper layer by connecting payloads of separate packets together in a "stream".
+
+The bulk of the work done by this layer includes keeping track of multiple connections that may be taking place at any one time and keeping the incoming and outgoing packets properly addressed to be relayed to their respective desired locations. It may use a form of multiplexing to allow each connection to be properly directed to its intended interface/location in the Session Layer.
+
+If a higher layer requires that a connection be created that is "reliable" (able to notice an error and then correct for the error so that all data sent eventually arrives at its destination) and the above layer cannot provide its own method of ensuring a "reliable" connection, then it is up to this layer to create a "reliable connection" that ensures all data sent eventually arrives.
+
+If a "reliable" service is not required, but instead an "unreliable" connection is desired, then it is up to this layer to ensure that the packets arriving are the same as the packets that were sent, or else they are discarded. This can be performed by a number of ways, but the most common is to use special checksums (explained in a lower layer below this.)
+
+(Described Later: Brief summary) Both reliable and unreliable connections may use something called a checksum (explained later in this page) If a packets computed checksum matches its carried checksum, then the packet may be considered valid, and have its payload passed on up to a higher layer. If the checksums do not match, then the packet may be discarded.
+
+If any order processing of data is needed to ensure packets coming in are assembled in the right sequence, then it is at this layer that this occurs. A special sequence number of sorts may be included in each packet transmitted by the sender. This sequence identifier allows the receiver to know what order to send payloads of incoming packets on up to the next higher layer. This helps to ensure payloads do not get re-ordered from transmitted sequence.
+
+Regardless of which method (reliable or unreliable) is used, it is up to this layer to provide enough information in the packets to ensure the order is known and packets are free of errors. A "reliable" connection looks to get new copies of damaged packets while an "unreliable" connection looks to discard the errors. A "reliable" connection would wait for packets missing in a sequence before continuing. An "unreliable" connection may just discard packets that arrive out of sequence and continue passing on the payload of packets in a sequential order that may skip occasional packets arriving out of order.
+
+As a final requirement, like other layers, this layer is supposed to insulate the other layers from changes made to it. Say for example a new media is used, that may effect the Physical Layer and the Data Link. If the interface for the data link layer is coded to offer the same services to the Layer above, upper layers are not impacted by changes made to layers below. This allows for advancements to be made in any layer to replace previous implementations without causing serious impacts requiring the whole stack of layers to be recoded.
+
+This layer acts much like a shipping warehouse supervisor. The supervisor must know the source of a package needing to be sent out as well as the destination. The supervisor must find a box in which the package will fit. If the package is too large to fit into the box, the supervisor must break the package into smaller parts that may fit into the box. This supervisor also may date or time stamp the boxes holding the packages so the receiver will know in what order the packages inside the boxes were shipped. If a recipient needs to reply to the original sender they send their package back to the company where we have our trusty supervisor. This supervisor examines the package to see who sent it, and who in the organization should be getting the return package. Some people in his organization may care if the package arrives, and want to know who picked it up, so they may asked for the supervisor to send the package "Registered Mail" with "Return Receipt Requested" to know the package did arrive and who picked it up. Some people in his organization are just sending out bulk advertisements and if the little junk mail cards get munged in the postal system to the point they cannot be read, oh well. If after our supervisor notices packages are piling up and not leaving fast enough to certain destinations only served by "Cheap & Slow Mail Service" he may decide to hold off on trying to send too many boxed packages through that system too quickly for fear of them being lost.
+
+In the above analogy, the organization is the Session Layer, and the shipping supervisor is the Transport layer. The supervisor decreases the sending of packages to slower mail carriers (flow control.) The supervisor keeps track of who in their organization is sending out a package with source addresses so as to know who a response on that package should be sent for each person in the organization that is presently sending packages outside the organization (multiplexing). The supervisor chops packages that are too large into smaller pieces that fit in the boxes the supervisor has on hand (packetizing of payload in sizes allowed by Transport layer protocol.) Each member of his company may send multiple packages and notices to anyone in the world that can get mail and strike up conversations as needed, but the supervisor must keep track of each transaction (creating connections as needed by the Session Layer.) If suddenly, the shipping system went over to using personal Jets to fly things to destinations, the people at the organization need not do anything differently (Session Layer is insulated and not inconvenienced by changes made in hardware at layers lower than it.) Reliable transport is effected by use of registered mail and return receipt requested. "Unreliable" mail is sent out in bulk, and if it gets lost along the way, becomes broken, or no longer valid, it may be discarded and nobody is blamed. If the supervisor is told that the packages needed to be shipped to a destination are done for now, the supervisor can then forget about that connection between a member of the supervisor's organization and the outside world and focus on the other connections being made by members of their organization, and incoming connection requests from outside organizations.
+
+3.) Networking Layer: It is the opinion of one of my associates that this layer is potentially the most complex of all the layers due to the issues that it must address. Most importantly: routing. This layer is responsible primarily with routing of data from the layer above (Transport Layer) to a remote location that may or may not share the same Physical Layer-direct-link, or even Data Link Layer protocol. Issues in differences in the commonly referenced name "bandwidth" to describe the size of an imaginary pipe for pushing data from one point to another as if it were liquid in a real pipe, are also address here at this layer. Just as the Data Link Layer below must ensure that a fast sender does not flood-out a slower receiver and possibly lead to lost data, this layer also must address problems that may exist when a stream of packets coming form a network with unused big pipes encounters a possibly busy network with small pipes. Even in the case where two networks both have the same sized pipes, a network with a pipe that is almost full may have difficulties in passing on incoming packets from a network with a pipe that is nearly empty.
+Other issues that are resolved by this layer include dealing with packet sized in the case of dissimilar settings, or protocols between networks forcing the size of a packet to become smaller before being passed on (called fragmentation in IP of the TCP/IP suite of protocols). (Part of another document goes to better describe this using the often used "carrier pigeon" lesson to convey the problems of packet fragmentation by using symbolism and allowing the reader to draw some parallels. It can be found here at /networking/integrated.html#pigeon. I do not promote the slaughter of innocent birds here. I use the often-used "carrier pigeon" scenario to describe TCP/IP based transmissions of data but extend it to include packet fragmentation. The idea is to use a pre-exiting model for teaching that the user may know, and extend it to also include the special case of fragmentation.)
+
+Often some sort of accounting mechanisms are included at this layer to allow a network administrator to see how many packets, bytes, and various numbers of different sized packets may have been transmitted. Though it is not an absolute necessity to the function of this layer, it does often provide statistical data for making charges to parties, optimizing links and arguing for bigger more expensive pipes, or smaller cheaper pipes, or bigger slower pipes, or smaller faster pipes. It can be one thing to tell your boss you need a bigger pipe, and it is entirely another to show your boss you need a bigger pipe.
+
+2.) Data Link Layer: This layer is responsible for creating what appears to the layer above (Network Layer) as a channel that is free of detected errors. Often this is done by packaging bits into cells, or frames, or generically "packets" with a predictable beginning and end and special calculations performed on the data known as checksums.
+It is necessary for the sender and receiver to agree upon the beginning and ends of packets so their transmission may be synchronized. The beginning of the packet may be known by both the sender and receiver based on a shared timing. For example (this one is not a real-case), a packet should be expected every second with a 1 second pause after each packet (synchronous). Another example may include using a special sequence of bits that act as a signature for the beginning of a packet and another special signature that acts as the end of a packet (asynchronous). With either system it is possible for the sender and receiver to both know when a packet starts, and stops.
+
+However the bits are packaged, a system is devised and used by the sender and receiver to allow the receiver to detect a bad cell, frame or generically packet. Often this is a checksum. A checksum is a special mathematical check performed on the data being transmitted by the sender's Data Link Layer. The sender examines the payload it will be encapsulating in a packet and performs a special mathematical equation on the payload (or complete packet depending on the defined Data Link Layer protocol). Then it includes the results of that equation in a part of the packet that is not the payload, such as the beginning, or header of the packet. When the receiving machine gets the packet, it looks in the agreed upon location of the packet for the checksum value, and removes it from the packet. Then the receiver performs the same mathematical equation on the payload (or remainder of packet, depending upon the protocol's agreed upon method) and compares its result with that of the transmitted packet's checksum value. If both are different, then there is something wrong with the received packet, and it may be discarded.
+
+This layer resolves problems that may arise in the cases of duplicated frames, cells, or damaged packets being received, and knowing how to deal with them as well as the above mentioned checksum for finding bad frames, cells or generically packets. One solution may be to just drop the frame.
+
+Contention for the transmission-channel may be an issue for the Data Link Layer when support for Full Duplex is enabled. If an in band acknowledgement requires the use of the Transmit circuit, then bits needing to be packaged and sent out on the transmit circuit must compete with the data needing to be packaged and sent on its way from the Network Layer. (A case could exist where an acknowledgment band as a separate circuit may exist for the purpose of acknowledgments only, but this would be a Data Link Layer solution to this issue, and it up to the defined protocol to address this as a solution if it is used. Many Data Link Layer protocols do not use this solution, but instead may include an acknowledgment as part of a frame, cell or generically a packet being sent to the original sender anyway.)
+
+This layer needs to address problems that may exist where a fast transmitter from inundating the slower receiver with too many bits, too fast for the receiver to analyze them. The consequences of not addressing this could lead to dropped bits and data lost by the receiver.
+
+In the case of a non Point-To-Point network like a Broadcast network, this layer must also deal with problem associated with multiple senders wishing to use the shared media. Some may elect to use a form of Time Delimited Multiplexing where each device gets a time window to use the shared media. Some may elect to use a system where each device transmits their intention to transmit, and if there is no complaint, they transmit their packet (CSMA/CA (Carrier Sense Media Access, Collision Avoidance): LocalTalk). Some may look to just allowing every device to transmit whenever they have data to transmit; they always check for "collisions" (when two device try to use the same shared media at the same time) and when collisions are found, both offending Data Link Layer devices take a time out, each for a randomly different amount of time before trying to transmit again (CSMS/CD (Carrier Sense Media Access Collision Detection: Ethernet). Some may use a special "token" passed from machine to machine where by which only machines with a token are permitted to speak (TokenRing). Some may chose to have a central hub that acts as a gate keeper to which devices must ask permission before transmitting and special priority may be given to servers, or identified special devices (Demand Priority: 100VG-AnyLAN). Some may use other systems not mentioned above.
+
+Some examples of some protocols that operate mostly in the Data Link Layer include Ethernet, TokenRing, ATM, and PPP.
+
+1.) Physical Layer: This layer is responsible for moving bits across a shared media between two points. Agreed upon specification by both parties involved (or all parties involved) on how (1) bit and off (0) bit should be signaled. For what duration should an amperage, how a voltage signature proceeds in order for the sender to the receiver foor it to "hear" the signal, and decode the signal back into the bits transmitted by the sender. If not a wired physical media, but instead a wireless system, then it would be this layer that specified what frequency of light or sound would be used and if luminous intensity or amplitude changed meanings of bits. This layer also specifies how the channel may be used: Full Duplex, Half Duplex, or (possibly?) Simplex. This layer also deals with conductor mapping in the case of wired media, and frequency/amplitude/cycle-offsets in the case of wireless media for mapping Receiving and Transmission.
+An example of a wired system could be 10 Base T Ethernet. Technically Ethernet is a Data Link Layer protocol, but the wiring for Ethernet is a Physical Layer protocol. Taking an ASCII Art drawing from my small online EtherNet cabling document, we will use a numbering system specified below:
+
+ASCII Art drawing of a 10 Base T RJ45 Jack:
+
+         END                                            TOP
+      ----------                           ------------------------------
+    1|--O       |                        8|----------                    |
+    2|--O       |                        7|----------                    |
+    3|--O        ---                     6|----------                    |
+    4|--O        |  |                    5|----------                    |
+    5|--O        |  |                    4|----------                    |
+    6|--O        ---                     3|----------                    |
+    7|--O       |                        2|----------                    |
+    8|--O       |                        1|----------                    |
+      ----------                           ------------------------------
+
+
+
+
+         BOTTOM                                         SIDE
+      ------------------------------       ------------------------------
+     |                              |     |                              |
+     |                              |     |                              |
+    |||||||||||||,,,,,,,,,          |     |                              |
+    ||||||||||||||||||||||          |     |                              |
+    |||||||||||||`````````          |     |                              |
+     |                              |     |                              |
+     |                              |     |                              |
+      ------------------------------       ------------------------------||
+                                                             ///|||||||||||
+                                                      ////////
+ASCII Art drawing of two ends of a 10 Base T, RJ45 cable with one RJ45 jack on each end of the cable:
+     (TOP VIEW POINTING LEFT)                 (TOP VIEW POINTING RIGHT)
+  ------------------------------           ------------------------------
+8|----------                    |         |                    ----------|1
+7|----------                    |WIRE-WIRE|                    ----------|2
+6|----------                    |WIRE-WIRE|                    ----------|3
+5|----------                    |WIRE-WIRE|                    ----------|4
+4|----------                    |WIRE-WIRE|                    ----------|5
+3|----------                    |WIRE-WIRE|                    ----------|6
+2|----------                    |WIRE-WIRE|                    ----------|7
+1|----------                    |         |                    ----------|8
+  ------------------------------           ------------------------------
+Assume that the numbering scheme listed above holds true for this document. Pins number 1 and 2 are used for Transmission. Pin 1 is used for the positive charge (+) and pin 2 is used for the negative charge (-). Pins number 3 and 6 are used for Reception. Pin 3 is used for the positive charge and pin 6 is used for the negative charge. (The reason for 10 Base T Ethernet over RJ45 jack to skip pins number 4 and 5 is for phone service. Standard analog telephones (POTS) using the RJ-style jacks in the U.S. use 2 conductors. They start using the center two conductors, and when extra lines are needed and added, then the next outer center pairs are used. In the case of an 8 conductor RJ-style jack used by the telephone company for phone service (though most residential U.S. RJ-style jacks are 4 or 6 conductor RJ-style jacks) pins 4 and 5 would be the center two pins, and reserved for the first phone line. Pins 3 and 6 would be used for the next phone line, and pins 2 and 7 would be used for the third phone line. Pins 4 and 5 were therefore skipped so that previous wiring for phones could possibly continue to exist in buildings while still offering EtherNet service.
+
+Quick review of similarities between layers:
+Layers of the 7.L.M.
+7
+6
+5
+4
+3
+2
+1
+Described Item
+*1
++
++
++
++
++
++
+Service For Higher Layer
++
++
++
++
++
++
+-
+Data and Signals for Lower Layer
+-
+-
+-
++
++
++
+-
+Prevent Fast Sender from Overrunning a slow receiver
+*1
++
++
++
++
++
++
+Take data handed from the higher layers, and package it as the payload of this layer for data running down from the Application layer towards the Physical Layer
+*1
++
++
++
++
++
+-
+Take data handed from the lower layers, and strip off this layers header information and perform any necessary analysis of the payload integrity if necessary and then hand the payload up to the next higher layer assuming data flows from the Physical Layer up towards the Application Layer.
++/-
+-
+-
++/-
+-
++
+-
+Offer error detection for transmitted data (Not to be confused with error correction.)
++/-
+-
+-
++/-
+-
++
+-
+Offers Error Correction (not just error detection)
++
++
++
++
+-
+-
+-
+End to End layer: Conversation take place between peer level services on remote stacks
+-
+-
+-
+-
++
++
++
+Chained: which means they may need to communicate through other stacks' peer layers in a chained sequence before their conversation may eventually be passed to the remote stack's peer layer protocol. *2
+-
+-
++
+-
+-
++
++
+Protocol may deal with arbitrating signaling when using a Half Duplex system to signal turns for "speaking"
++
+-
+-
+-
+-
+-
+-
+Deals with application issues like screen formatting and displaying content visible tot he user.
+-
++
+-
+-
+-
+-
+-
+Deals with issues of translation that may take place at the character level, or even be at a higher level of abstraction like floating point numbers, long ints, strings, and possibly arrays. Common forms of translation include compression, encryption and character set conversions like Unicode/ASCII/EBCIDIC conversion as well.
+-
+-
++
+-
+-
+-
+-
+This layer provides synchronization of transferred data so as to make effects of transmission interruptions less significant by allowing only unsuccessfully transmitted data to be transmitted. Also deal with Session creation, data transmission over session, and session tear down.
+-
+-
+-
++
+-
+-
+-
+Responsible for multiplexing, de-multiplexing, inverse multiplexing of connections. If types of service are to be made available for layers above, then here is where they are specified. Two common types of connections include, unreliable connection-oriented, and reliable connection oriented. Also, this layer may be required to never re-order payload data for higher layers: Say remote Point A first transmits a 1, then a 2 and finally a 3, it may be possible for these transmitted values to arrive out of order. If the protocol dictates the data should only be passed in order of transmission but not receipt, then numbers should only be passed in increasing value over these three values. If the connection is reliable all numbers will be sent eventually. If unreliable is used, then a value may be lost, but never re-sequenced. Lastly, this layer should insulate all higher layers from changes made to hardware and hardware drivers.
+-
+-
+-
+-
++
+-
+-
+Deals with routing of packets from source to destination, packet size negotiation or fragmentation/de-fragmentation, accounting, flow-control to prevent unfilled large pipe senders from over-running filled, or small pipe receivers.
+-
+-
+-
+-
+-
++
+-
+Creates a channel free from detected errors, deals with duplicate packets/frames/etc and contention for a shared media with other nodes in the case of a broadcast network.
+-
+-
+-
+-
+-
+-
++
+Sets information on signaling: how both systems should agree on what a "bit" looks like to them; voltage, duration, frequency, amplitude, amperage, and line resistance etc. Uses the above to send and receive raw bits from source to destination over a shared media (wore, or wireless or?). Also specifies how media may be used: Full Duplex, Half Duplex, or Simplex.
+7
+6
+5
+4
+3
+2
+1
+Described Item
+Layers of the 7.L.M.
+Key
++
+This layer is specified to have this
+-
+This layer is not specified to have this.
++/-
+Even though this layer does not explicitly allow for this to take place, it often does even if the standard does not require it.
+*1
+Since there are no layers above the application layer within the 7-layer model standard, there technically are no layers above it. However, the user's actions and users themselves could be viewed as and unofficial layer. In this way, we do not officially state these items as a "+" but instead offer this explanation.
+*2
+See the End-to-end vs. Chained table diagram to better understand this.
+ISO OSI 7 Layer Reference Model: End-to-end vs. Chained Communications
+7	Application-	< -------End--------to--------End------- >	Application-
+6	Presentation	< -------End--------to--------End------- >	Presentation
+5	--Session---	< -------End--------to--------End------- >	--Session---
+4	-Transport--	< -------End--------to--------End------- >	-Transport--
+3	--Network---	< - >	--Network--	< -- >	--Network--	< - >	--Network---
+2	-Data Link--	< - >	DL	< - >	DL	< -- >	DL	< - >	DL	< - >	-Data Link--
+1	--Physical--	< = >	PH	< - >	PH	< == >	PH	< - >	PH	< = >	--Physical--
+L	Stack Num 1	 Link 	Stack Num 2 	Link 	Stack Num 3	Link 	Stack Num 4
+Key:
+< == >	This is a physical wire or media connecting devices
+< -- >	This is a virtual path for peer level, layered protocol communications. Follow the GREEN colored layers, up and down any touching green stacks, and across physical links.
+----	Where two or more "-" characters exist in a string, alone in a cell special meaning is implied. This is meant to show that data does not physically pass within the stack shown across this path, even though the data "virtually" passes through this point when viewing the peer layer stacks from an "End-to-end" vs. "chained" perspective.
+DL	Another way for referring to the Data Link layer.
+PH	Another way for referring to the PHysical Layer
+GREEN or follow the ajacent cells with "links"	This identifies the path that data actually flows, in a trip down the layers, across the physical layers, up to the RED colored layer where it is analyzed and sent on down to another physical layer, and over through the same layers, and is passed on down again, and across a third physical link to the destination, and up its layers.
+R E D	Shows the numbered layers where a chained communications for peer level protocols on original source to final destination take place. (By chained communication, you see that peer layer protocols must communicate through partial stacks for network devices before getting to final destination.)
+Before going on, it should be noted that data actually flows in two logical locations. The first locations include interfaces between different layers. The second locations include the physical links between peer Physical Layer nodes that are connected over a wire or other media.
+
+A user makes a request that needs to go out the network. Their request enters into the Application Layer from just above the Application Layer. The application layer encodes it in such a way that its peer layer protocol on the far right hand stack can understand it. Then the Application Layer on the left-hand stack passes it down to the Presentation Layer. The Presentation Layer then follows suit with the data handed to it from the layer above, and packages it in such a way that the peer layer protocol on the far right stack will understand it and also know what to do with it. This process of re-encapsulation of higher level data continues all of the way down the left-hand stack until it gets to the physical layer.
+
+At the Physical Layer the data is passed on a media like a wire, or over a wireless medium to another device. If this device was a router, then that router accepts the data at the physical layer, brings it up the Data Link Layer verifying the bits being received are the transmitted bits from the far left machine by examining the checksums. Then the Data Link Layer passes its payload up to the Network Layer. The Network Layer examines the header information of the packet it received from the Data Link Layer and determines what to do with it based on the destination address and other header information. In this case, it decides to pass it onto another router to its right. Before it sends it on, the packet must now travel back down this router's stack to the physical layer so the next router can also use the same procedure. After the packet makes its way down the first router's stack, and across the physical layer wire to the next router, up its stack, and back down again to the far right stack, then it is ready to be processed by the destination host. The destination host takes the incoming bits, and packets them into a packet or frame or cell to examine the packet. If the packet is ok, then the payload is passed up to the Network Layer. The Network layer examines the header added by the original far left stack, and determines that the packet is fine to be passed on up. After this process repeats with each layer stripping off the header information letting that respective layer know how to deal with its payload. Eventually, the original request made by the user at the top of the Application Layer of the left hand stack makes its way to the top Application Layer of the remote machine. At this layer, either a remote user, or remote program acts upon the incoming data and may respond. If a response is sent the procedure happens once again, but this time starts from the right hand side, and the response makes its way back to the left hand stack's Application Layer and in the end, its user.
+
+Here you can see boxes colored in RED that show at what layer a router operates.
+
+ISO OSI Seven Layer Model: Routed/Filtered Transmissions
+7
+Application-	
+< -------End--------to--------End------- >
+Application-
+6
+Presentation	
+< -------End--------to--------End------- >
+Presentation
+5
+--Session---	
+< -------End--------to--------End------- >
+--Session---
+4
+-Transport--	
+< -------End--------to--------End------- >
+-Transport--
+3
+--Network---	
+< ## >
+--Network---	
+< ## >
+--Network---	
+< ## >
+--Network---
+2
+-Data Link--	
+< -- >
+-DLL-
+--
+-DLL-
+< -- >
+-DLL-
+--
+-DLL-
+< -- >
+-Data Link--
+1
+--Physical--	
+< == >
+-PHY-
+--
+-PHY-
+< == >
+-PHY-
+--
+-PHY-
+< == >
+--Physical--
+L
+Stack Num 1
+Link
+Stack Num 2
+Link
+Stack Num 3
+Link
+Stack Num 4
+Key:
+< == >
+This is a physical wire or media connecting devices.
+----
+Where two or more "-" characters exist in a string, alone in a cell special meaning is implied. This is meant to show that data does not physically pass within the stack shown across this path, even though the data "virtually" passes through this point when viewing the peer layer stacks from an "End-to-end" vs. "chained" perspective.
+-DLL-
+Another way for referring to the Data Link Layer .
+-PHY-
+Another way for referring to the PHYsical Layer
+< -- >
+This is a virtual path for peer level, layered protocol communications. Follow the GREEN colored layers, up and down any touching green stacks, and across physical links.
+< ## >
+This is the layer were the peer level devices are communicating for the operation being discussed.
+GREEN
+This identifies the path that data actually flows, in a trip down the layers, across the physical layers, up to the RED colored layer where it is analyzed and sent on down to another physical layer, and over through the same layers, and is passed on down again, and across a third physical link to the destination, and up its layers.
+R E D
+This identifies the layer at which the operation discussed is taking place.
+Here you can see that with a Layer 2 Switch, a packet does not even get passed to the Network Layer on these intermediate partial stacks, since the switch does not have this layer. The switch only examines the Data Link Layer information to try and figure out what to do with the packet.
+
+ISO OSI Seven Layer Model: Data Link Layer Switching
+7
+Application-	
+< -------End--------to--------End------- >
+Application-
+6
+Presentation	
+< -------End--------to--------End------- >
+Presentation
+5
+--Session---	
+< -------End--------to--------End------- >
+--Session---
+4
+-Transport--	
+< -------End--------to--------End------- >
+-Transport--
+3
+--Network---	
+< -------End--------to--------End------- >
+--Network---
+2
+-Data Link--	
+< ## >
+-Data Link--	
+< ## >
+-Data Link--	
+< ## >
+-Data Link--
+1
+--Physical--	
+< == >
+-PHY-
+--
+-PHY-
+< == >
+-PHY-
+--
+-PHY-
+< == >
+--Physical--
+L
+Stack Num 1
+Link
+Stack Num 2
+Link
+Stack Num 3
+Link
+Stack Num 4
+Key:
+< == >
+This is a physical wire or media connecting devices.
+< -- >
+This is a virtual path for peer level, layered protocol communications. Follow the GREEN colored layers, up and down any touching green stacks, and across physical links.
+< ## >
+This is the layer were the peer level devices are communicating for the operation being discussed.
+----
+Where two or more "-" characters exist in a string, alone in a cell special meaning is implied. This is meant to show that data does not physically pass within the stack shown across this path, even though the data "virtually" passes through this point when viewing the peer layer stacks from an "End-to-end" vs. "chained" perspective.
+-DLL-
+Another way for referring to the Data Link Layer .
+-PHY-
+Another way for referring to the PHYsical Layer
+GREEN
+This identifies the path that data actually flows, in a trip down the layers, across the physical layers, up to the RED colored layer where it is analyzed and sent on down to another physical layer, and over through the same layers, and is passed on down again, and across a third physical link to the destination, and up its layers.
+R E D
+This identifies the layer at which the operation discussed is taking place.
+A simple repeater does not even examine the Data Link Layer information. All that a repeater does is read in bits, and the re-transmit the bits in the same sequence it receives them. If bad bits come in, bad bits get relayed on.
+
+ISO OSI Seven Layer Model: Simple Repeated Bits
+7
+Application-	
+< -------End--------to--------End------- >
+Application-
+6
+Presentation	
+< -------End--------to--------End------- >
+Presentation
+5
+--Session---	
+< -------End--------to--------End------- >
+--Session---
+4
+-Transport--	
+< -------End--------to--------End------- >
+-Transport--
+3
+--Network---	
+< -------End--------to--------End------- >
+--Network---
+2
+-Data Link--	
+< -------End--------to--------End------- >
+-Data Link--
+1
+--Physical--	
+< ## >
+--Physical--	
+< ## >
+--Physical--	
+< ## >
+--Physical--
+L
+Stack Num 1
+Link
+Stack Num 2
+Link
+Stack Num 3
+Link
+Stack Num 4
+Key:
+< == >
+This is a physical wire or media connecting devices.
+< -- >
+This is a virtual path for peer level, layered protocol communications. Follow the GREEN colored layers, up and down any touching green stacks, and across physical links.
+< ## >
+This is the layer were the peer level devices are communicating for the operation being discussed.
+GREEN
+This identifies the path that data actually flows, in a trip down the layers, across the physical layers, up to the RED colored layer where it is analyzed and sent on down to another physical layer, and over through the same layers, and is passed on down again, and across a third physical link to the destination, and up its layers.
+R E D
+This identifies the layer at which the operation discussed is taking place.
+It is possible for a mixture of different network devices to exist. Here we can see an example where a Data Link Layer Switch is connected to a router which operates at layer 3.
+
+In this example, you may see that Layer 3 on the left hand side speaks virtually to Layer 3 on the intermediate partial stack. The sender speaks through this intermediate partial stack that relays on the packets to the final destination in this eaxmple. You notice that the second partial stack only goes up to Layer 2. This allows Layer 2 on the sender to speak virtually to Layer 2 on the second partial stack. Layer 2 on the second stack speaks via chained communications through the third partial stack's 2nd Layer. After being routed by the Layer 3 of the third partial stack, data comes back down to go out the same interface on a media shared by the final destination.
+
+ISO OSI Seven Layer Model: Mixed (Router + Data Link Switch)
+7
+Application-	
+< -------End--------to--------End------- >
+Application-
+6
+Presentation	
+< -------End--------to--------End------- >
+Presentation
+5
+--Session---	
+< -------End--------to--------End------- >
+--Session---
+4
+-Transport--	
+< -------End--------to--------End------- >
+-Transport--
+3
+--Network---	
+< #####Chained##### >
+--Network---	
+< ## >
+--Network---
+2
+-Data Link--	
+< ## >
+-Data Link--	
+< ## >
+-DLL-
+--
+-DLL-
+< -- >
+-Data Link--
+1
+--Physical--	
+< == >
+-PHY-
+--
+-PHY-
+< == >
+-PHY-
+--
+-PHY-
+< == >
+--Physical--
+L
+Stack Num 1
+Link
+Stack Num 2
+Link
+Stack Num 3
+Link
+Stack Num 4
+Key:
+< == >
+This is a physical wire or media connecting devices.
+< -- >
+This is a virtual path for peer level, layered protocol communications. Follow the GREEN colored layers, up and down any touching green stacks, and across physical links.
+< ## >
+This is the layer were the peer level devices are communicating for the operation being discussed.
+----
+Where two or more "-" characters exist in a string, alone in a cell special meaning is implied. This is meant to show that data does not physically pass within the stack shown across this path, even though the data "virtually" passes through this point when viewing the peer layer stacks from an "End-to-end" vs. "chained" perspective.
+-DLL-
+Another way for referring to the Data Link Layer.
+-PHY-
+Another way for referring to the PHYsical Layer
+GREEN
+This identifies the path that data actually flows, in a trip down the layers, across the physical layers, up to the RED colored layer where it is analyzed and sent on down to another physical layer, and over through the same layers, and is passed on down again, and across a third physical link to the destination, and up its layers.
+R E D
+This identifies the layer at which the operation discussed is taking place.
+To be continued... (Still expanding upon the ISO OSI 7 Layer Model. This section may be broken up into multiple sections since this monolithic review is a bit too large for a single page for most people.)
+
+Comments and/or suggestions for this?: Email me at: dugan@passwall.com
+Attempts have been made to make the tables appear as they should for LYNX users by forcing a common field width for fields being used by padding them with other printable characters. This is meant to allow for LYNX users to see the tables much like the Netscape and other web browser worlds might show them. However, from personal experience, some versions of LYNX still manage to munge the tables, making them use up several pages. It seems to be a problem with how earlier versions of LYNX dealt with tables, but the problem has not been entirely isolated.
+Some have asked why this collection of on-line documents is so lacking of graphic content. To them I answer: faster downloads. Many of these pages are smaller than some pictures on many commercial web sites. You do not come here to look at my pictures. You come here to read content. Also, LYNX users benefit from this, and by using ALL text, people with ADA issues are able to use speech recognition software on the text to hear the words.
+Copyright (C) 1999, 2000, 2001, 2002 by Michael Egan: All rights reserved.
+A Special License: No part of this document may be used for profit without the consent of the author Michael Egan in writing. Content may be duplicated for retransmission for non-profit purposes as long as the copyright and license remain included in their entirety. The content is provided "as-is" and I take no responsibility on the content's truthfulness or consistency. Errors may exist in these documents, but acting upon these errors is left up to the reader to verify by a third party that will take responsibility for fact verification. When notified of errors or inconsistencies, attempts will be made to rectify the errors.
